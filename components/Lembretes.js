@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity, Switch, StyleSheet } from 'react-native';
 
 export default function Lembrete({ item, onEditar, onApagar, onFinalizar }){
   // Converte a data para formato brasileiro
-  const dataFormatada = new Date(item.dataCriacao).toLocaleDateString('pt-BR');
+  const dataFormatada = item.dataCriacao.toDate().toLocaleDateString('pt-BR');
   
   return(
     <View style={styles.container}>
@@ -16,7 +16,7 @@ export default function Lembrete({ item, onEditar, onApagar, onFinalizar }){
           trackColor={{ false: '#767577', true: '#81b0ff' }}
           thumbColor={item.finalizado ? '#f5dd4b' : '#f4f3f4'}
           value={item.finalizado}
-          onValueChange={() => onFinalizar(item.id, !item.finalizado)}
+          onValueChange={() => onFinalizar(item)}
         />
         <TouchableOpacity style={styles.botao} onPress={() => onEditar(item)}>
           <Text style={styles.textoBotao}>Editar</Text>
